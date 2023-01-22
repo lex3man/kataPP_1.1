@@ -30,8 +30,10 @@ public class Util {
     public static void makeTransaction(String query) {
         try (Connection conn = Util.getMySQLConnection()) {
             if (conn != null) {
+                conn.setAutoCommit(false);
                 try (PreparedStatement st = conn.prepareStatement(query)) {
                     st.execute();
+                    conn.commit();
                 } catch (SQLException se) {
                     se.printStackTrace();
                 }

@@ -44,11 +44,13 @@ public class UserDaoJDBCImpl implements UserDao {
 
         try (Connection conn = Util.getMySQLConnection()) {
             if (conn != null) {
+                conn.setAutoCommit(false);
                 try (PreparedStatement st = conn.prepareStatement(sqlQuery)) {
                     st.setString(1, name);
                     st.setString(2, lastName);
                     st.setInt(3, age);
                     st.executeUpdate();
+                    conn.commit();
                 } catch (SQLException se) {
                     se.printStackTrace();
                 }
@@ -63,9 +65,11 @@ public class UserDaoJDBCImpl implements UserDao {
 
         try (Connection conn = Util.getMySQLConnection()) {
             if (conn != null) {
+                conn.setAutoCommit(false);
                 try (PreparedStatement st = conn.prepareStatement(sqlQuery)) {
                     st.setLong(1, id);
                     st.executeUpdate();
+                    conn.commit();
                 } catch (SQLException se) {
                     se.printStackTrace();
                 }
@@ -81,8 +85,10 @@ public class UserDaoJDBCImpl implements UserDao {
 
         try (Connection conn = Util.getMySQLConnection()) {
             if (conn != null) {
+                conn.setAutoCommit(false);
                 try (PreparedStatement st = conn.prepareStatement(sqlQuery)) {
                     ResultSet resp = st.executeQuery(sqlQuery);
+                    conn.commit();
                     while (resp.next()) {
                         User usr = new User(
                                 resp.getString("name"),
