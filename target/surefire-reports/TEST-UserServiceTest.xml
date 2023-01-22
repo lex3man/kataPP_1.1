@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="6" failures="0" name="UserServiceTest" time="6.705" errors="0" skipped="0">
+<testsuite tests="6" failures="0" name="UserServiceTest" time="6.481" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="17.0.4+8-Debian-1deb11u1"/>
@@ -57,10 +57,10 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.stdout.encoding" value="UTF-8"/>
   </properties>
-  <testcase classname="UserServiceTest" name="saveUser" time="2.514"/>
-  <testcase classname="UserServiceTest" name="removeUserById" time="1.078"/>
-  <testcase classname="UserServiceTest" name="getAllUsers" time="0.815"/>
-  <testcase classname="UserServiceTest" name="dropUsersTable" time="0.325"/>
-  <testcase classname="UserServiceTest" name="createUsersTable" time="0.459"/>
-  <testcase classname="UserServiceTest" name="cleanUsersTable" time="1.514"/>
+  <testcase classname="UserServiceTest" name="saveUser" time="1.97"/>
+  <testcase classname="UserServiceTest" name="removeUserById" time="1.223"/>
+  <testcase classname="UserServiceTest" name="getAllUsers" time="0.848"/>
+  <testcase classname="UserServiceTest" name="dropUsersTable" time="0.397"/>
+  <testcase classname="UserServiceTest" name="createUsersTable" time="0.469"/>
+  <testcase classname="UserServiceTest" name="cleanUsersTable" time="1.574"/>
 </testsuite>
