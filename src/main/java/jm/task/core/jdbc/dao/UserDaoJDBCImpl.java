@@ -18,7 +18,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void createUsersTable() {
-        sqlQuery = "CREATE TABLE IF NOT EXIST user ("
+        sqlQuery = "CREATE TABLE IF NOT EXISTS user ("
                 + "id BIGINT PRIMARY KEY AUTO_INCREMENT, "
                 + "name VARCHAR(255), "
                 + "lastName VARCHAR(255), "
@@ -28,7 +28,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void dropUsersTable() {
-        sqlQuery = "DROP TABLE IF EXIST user;";
+        sqlQuery = "DROP TABLE IF EXISTS user;";
 
         Util.makeTransaction(sqlQuery);
     }
@@ -36,7 +36,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public void saveUser(String name, String lastName, byte age) {
 
         sqlQuery = "INSERT into user ("
-                + "id, "
+                // + "id, "
                 + "name, "
                 + "lastName, "
                 + "age)"
