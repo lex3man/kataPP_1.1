@@ -31,9 +31,10 @@ public class Util {
         prop.setProperty("hibernate.connection.password", Password);
         prop.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
         // prop.setProperty("show_sql", true);
+        SessionFactory sf = null;
         try {
             Configuration conf = new Configuration().addProperties(prop).addAnnotatedClass(User.class);
-            SessionFactory sf = conf.buildSessionFactory();
+            sf = conf.buildSessionFactory();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -55,18 +56,17 @@ public class Util {
             ClassNotFoundException {
         Class.forName("com.mysql.jdbc.Driver");
         String connectionURL = "jdbc:mysql://" + hostName + ":3306/" + dbName;
-        Connection conn = DriverManager.getConnection(connectionURL, userName,
-                password);
+        Connection conn = DriverManager.getConnection(connectionURL, userName, password);
         return conn;
     }
 
     public static void makeTransaction(String query) {
         try (Connection conn = Util.getMySQLConnection()) {
             if (conn != null) {
-                conn.setAutoCommit(false);
+                // conn.setAutoCommit(false);
                 try (PreparedStatement st = conn.prepareStatement(query)) {
                     st.execute();
-                    conn.commit();
+                    // conn.commit();
                 } catch (SQLException se) {
                     se.printStackTrace();
                 }
