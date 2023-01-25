@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="6" failures="0" name="UserServiceTest" time="6.705" errors="0" skipped="0">
+<testsuite tests="6" failures="0" name="UserServiceTest" time="5.921" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="17.0.4+8-Debian-1deb11u1"/>
@@ -30,7 +30,7 @@
     <property name="java.class.version" value="61.0"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="5.10.0-19-amd64"/>
+    <property name="os.version" value="5.10.0-20-amd64"/>
     <property name="library.jansi.path" value="/usr/share/maven/lib/jansi-native"/>
     <property name="user.home" value="/home/master"/>
     <property name="user.timezone" value="Europe/Moscow"/>
@@ -57,10 +57,10 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.stdout.encoding" value="UTF-8"/>
   </properties>
-  <testcase classname="UserServiceTest" name="saveUser" time="2.514"/>
-  <testcase classname="UserServiceTest" name="removeUserById" time="1.078"/>
-  <testcase classname="UserServiceTest" name="getAllUsers" time="0.815"/>
-  <testcase classname="UserServiceTest" name="dropUsersTable" time="0.325"/>
-  <testcase classname="UserServiceTest" name="createUsersTable" time="0.459"/>
-  <testcase classname="UserServiceTest" name="cleanUsersTable" time="1.514"/>
+  <testcase classname="UserServiceTest" name="saveUser" time="2.035"/>
+  <testcase classname="UserServiceTest" name="removeUserById" time="1.141"/>
+  <testcase classname="UserServiceTest" name="getAllUsers" time="0.819"/>
+  <testcase classname="UserServiceTest" name="dropUsersTable" time="0.361"/>
+  <testcase classname="UserServiceTest" name="createUsersTable" time="0.639"/>
+  <testcase classname="UserServiceTest" name="cleanUsersTable" time="0.926"/>
 </testsuite>

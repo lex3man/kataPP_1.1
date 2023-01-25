@@ -11,48 +11,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
-    private String sqlQuery = "";
-
     public UserDaoJDBCImpl() {
         //
     }
 
     public void createUsersTable() {
-        sqlQuery = "CREATE TABLE IF NOT EXISTS user ("
+        Util.makeTransaction("CREATE TABLE IF NOT EXISTS user ("
                 + "id BIGINT PRIMARY KEY AUTO_INCREMENT, "
                 + "name VARCHAR(255), "
                 + "lastName VARCHAR(255), "
-                + "age INT)";
-
-        Util.makeTransaction(sqlQuery);
+                + "age INT)");
     }
 
     public void dropUsersTable() {
-        sqlQuery = "DROP TABLE IF EXISTS user;";
-
-        Util.makeTransaction(sqlQuery);
+        Util.makeTransaction("DROP TABLE IF EXISTS user;");
     }
 
     public void saveUser(String name, String lastName, byte age) {
-
-        sqlQuery = "INSERT into user ("
-                // + "id, "
-                + "name, "
-                + "lastName, "
-                + "age)"
-                + "VALUES(?, ?, ?)";
-
         try (Connection conn = Util.getMySQLConnection()) {
             if (conn != null) {
                 conn.setAutoCommit(false);
-                try (PreparedStatement st = conn.prepareStatement(sqlQuery)) {
+                try (PreparedStatement st = conn.prepareStatement(
+                        "INSERT into user (" + "name, " + "lastName, " + "age)" + "VALUES(?, ?, ?)")) {
                     st.setString(1, name);
                     st.setString(2, lastName);
                     st.setInt(3, age);
                     st.executeUpdate();
                     conn.commit();
                 } catch (SQLException se) {
+                    conn.rollback();
                     se.printStackTrace();
+                } finally {
+                    conn.setAutoCommit(true);
                 }
             }
         } catch (Exception ex) {
@@ -61,15 +51,11 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void removeUserById(long id) {
-        sqlQuery = "DELETE FROM user WHERE id = ?";
-
         try (Connection conn = Util.getMySQLConnection()) {
             if (conn != null) {
-                conn.setAutoCommit(false);
-                try (PreparedStatement st = conn.prepareStatement(sqlQuery)) {
+                try (PreparedStatement st = conn.prepareStatement("DELETE FROM user WHERE id = ?")) {
                     st.setLong(1, id);
                     st.executeUpdate();
-                    conn.commit();
                 } catch (SQLException se) {
                     se.printStackTrace();
                 }
@@ -80,15 +66,12 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public List<User> getAllUsers() {
-        sqlQuery = "SELECT * FROM user";
         List<User> users = new ArrayList<>();
 
         try (Connection conn = Util.getMySQLConnection()) {
             if (conn != null) {
-                conn.setAutoCommit(false);
-                try (PreparedStatement st = conn.prepareStatement(sqlQuery)) {
-                    ResultSet resp = st.executeQuery(sqlQuery);
-                    conn.commit();
+                try (PreparedStatement st = conn.prepareStatement("SELECT * FROM user")) {
+                    ResultSet resp = st.executeQuery("SELECT * FROM user");
                     while (resp.next()) {
                         User usr = new User(
                                 resp.getString("name"),
@@ -108,7 +91,21 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void cleanUsersTable() {
-        this.dropUsersTable();
-        this.createUsersTable();
+        try (Connection conn = Util.getMySQLConnection()) {
+            if (conn != null) {
+                conn.setAutoCommit(false);
+                try (PreparedStatement st = conn.prepareStatement("DELETE FROM user")) {
+                    st.executeUpdate();
+                    conn.commit();
+                } catch (SQLException se) {
+                    se.printStackTrace();
+                    conn.rollback();
+                } finally {
+                    conn.setAutoCommit(true);
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }
