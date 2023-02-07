@@ -1,0 +1,15 @@
+{
+  "headers": {
+    "date": "Mon, 06 Feb 2023 20:24:04 GMT",
+    "vary": "Accept-Encoding",
+    "via": "http/2 edgeproxy",
+    "content-type": "application/json; charset=utf-8",
+    "server": "deno/gcp-europe-north1",
+    "cache-control": "max-age=86400"
+  },
+  "url": "https://crux.land/.well-known/deno-import-intellisense.json",
+  "now": {
+    "secs_since_epoch": 1675715044,
+    "nanos_since_epoch": 873462000
+  }
+}

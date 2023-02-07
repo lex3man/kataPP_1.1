@@ -1,0 +1,22 @@
+{
+  "headers": {
+    "server": "Vercel",
+    "x-vercel-id": "arn1:arn1::rz548-1675715044774-7f0b815eae51",
+    "cache-control": "public, max-age=0, must-revalidate",
+    "content-type": "application/json; charset=utf-8",
+    "age": "8738864",
+    "access-control-allow-origin": "*",
+    "content-disposition": "inline; filename=\"deno-import-intellisense.json\"",
+    "etag": "W/\"c349ba3b6420a66c87167f08c1f67b3393aaa6bb7df444644f8d8766a4e7cfe0\"",
+    "accept-ranges": "bytes",
+    "strict-transport-security": "max-age=63072000",
+    "x-vercel-cache": "HIT",
+    "content-length": "487",
+    "date": "Mon, 06 Feb 2023 20:24:04 GMT"
+  },
+  "url": "https://intellisense.nest.land/deno-import-intellisense.json",
+  "now": {
+    "secs_since_epoch": 1675715044,
+    "nanos_since_epoch": 672289000
+  }
+}
